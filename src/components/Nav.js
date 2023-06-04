@@ -167,34 +167,44 @@ export const Nav = () => {
                 <nav>
                   <ul class="space-y-4">
                     <li>
-                      <a
-                        href="/"
+                      <Link
+                        to="/products"
                         aria-label="Our product"
                         title="Our product"
                         class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
                         Product
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="/"
+                      <Link
+                        to="/feature"
                         aria-label="Our product"
                         title="Our product"
                         class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
                         Features
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="/"
-                        aria-label="Catgory"
-                        title="Catgory"
+                      <Link
+                        to="/pricing"
+                        aria-label="Product pricing"
+                        title="Product pricing"
                         class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
                         Pricing
-                      </a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/category"
+                        aria-label="Product pricing"
+                        title="Product pricing"
+                        class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                      >
+                        Category
+                      </Link>
                     </li>
                     <li>
                       <a
