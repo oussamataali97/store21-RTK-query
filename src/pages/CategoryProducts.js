@@ -2,8 +2,15 @@ import { useGetCategoriesProductQuery } from "../productslice/productSlice";
 import { TailSpin } from 'react-loader-spinner'
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 function CategoryProducts (){
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
+
     const {categoryproduct} = useParams()
 
     const {isLoading,error, data}=useGetCategoriesProductQuery(categoryproduct)

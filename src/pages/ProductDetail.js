@@ -6,13 +6,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import "react-image-gallery/styles/css/image-gallery.css";
 
 import ImageGallery from 'react-image-gallery';
-
+import { useEffect } from 'react';
 
 // Import Swiper styles
 import 'swiper/css'
 
 import { useGetSingleProductQuery } from '../productslice/productSlice'
 const ProductDetail = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
     const {id}=useParams()
     const {data,error,isLoading}=useGetSingleProductQuery(id)
