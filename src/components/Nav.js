@@ -6,9 +6,14 @@ export const Nav = ({ theme, actualtheme }) => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleClick =()=>{
+    setIsMenuOpen(false)
+  }
+
   return (
     <div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
       <div class="relative flex grid items-center grid-cols-2 lg:grid-cols-3">
+
         <ul class="flex items-center hidden space-x-8 lg:flex">
           <li>
             <Link
@@ -51,6 +56,7 @@ export const Nav = ({ theme, actualtheme }) => {
             </Link>
           </li>
         </ul>
+        <div className="inline-flex items-center lg:mx-auto">
         <Link
           to="/"
           aria-label="Company"
@@ -75,7 +81,22 @@ export const Nav = ({ theme, actualtheme }) => {
           <span class="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
             Store21
           </span>
+
         </Link>
+        {loggedIn && window.localStorage.getItem('userToken') &&
+
+<Link to='/profile' className="flex md:hidden ml-5">
+      <div className="avatar online">
+        <div className="w-14 rounded-full">
+          <img src={userAuthenticated?.image} className="rounded-full w-16 border" />
+        </div>
+      </div>
+    </Link>
+}
+
+        </div>
+
+
         <ul class="flex items-center hidden ml-auto space-x-8 lg:flex">
           <li>
             {!loggedIn && !window.localStorage.getItem('userToken') ? <Link
@@ -166,6 +187,7 @@ export const Nav = ({ theme, actualtheme }) => {
                       </span>
                     </a>
                   </div>
+
                   <div>
                     <button
                       aria-label="Close Menu"
@@ -184,26 +206,11 @@ export const Nav = ({ theme, actualtheme }) => {
                 </div>
                 <nav>
                   <ul class="space-y-4">
-                    <li>
-                      {!loggedIn && !window.localStorage.getItem('userToken') ? <Link
-                        to="/sign-in"
-                        aria-label="Sign in"
-                        title="Sign in"
-                        class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                      >
-                        Sign in
-                      </Link> : <Link to='/profile'
-                         aria-label="Sign in"
-                         title="Sign in"
-                         class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                       >
 
-                        Profile
-                      </Link>}
-                    </li>
                     <li>
                       <Link
                         to="/products"
+                        onClick={handleClick}
                         aria-label="Our product"
                         title="Our product"
                         class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -213,6 +220,7 @@ export const Nav = ({ theme, actualtheme }) => {
                     </li>
                     <li>
                       <Link
+                      onClick={handleClick}
                         to="/feature"
                         aria-label="Our product"
                         title="Our product"
@@ -223,6 +231,7 @@ export const Nav = ({ theme, actualtheme }) => {
                     </li>
                     <li>
                       <Link
+                      onClick={handleClick}
                         to="/pricing"
                         aria-label="Product pricing"
                         title="Product pricing"
@@ -233,6 +242,7 @@ export const Nav = ({ theme, actualtheme }) => {
                     </li>
                     <li>
                       <Link
+                      onClick={handleClick}
                         to="/category"
                         aria-label="Product pricing"
                         title="Product pricing"
@@ -242,17 +252,19 @@ export const Nav = ({ theme, actualtheme }) => {
                       </Link>
                     </li>
                     <li>
-                      <a
-                        href="/"
+                      <Link
+                      onClick={handleClick}
+                        to="/sign-in"
                         aria-label="Sign in"
                         title="Sign in"
                         class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
                         Sign in
-                      </a>
+                      </Link>
                     </li>
                     <li>
                       <Link
+                      onClick={handleClick}
                         to="/category"
                         aria-label="Product pricing"
                         title="Product pricing"
