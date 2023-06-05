@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-export const Nav = ({theme,actualtheme}) => {
-  const {loggedIn,userAuthenticated}=useSelector((state)=>state.users)
+export const Nav = ({ theme, actualtheme }) => {
+  const { loggedIn, userAuthenticated } = useSelector((state) => state.users)
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -86,30 +86,30 @@ export const Nav = ({theme,actualtheme}) => {
             >
               Sign in
             </Link> : <Link to='/profile'>
-            <div className="avatar online">
-  <div className="w-14 rounded-full">
-    <img src={userAuthenticated?.image} className="rounded-full w-16 border" />
-  </div>
-</div>
-            </Link> }
+              <div className="avatar online">
+                <div className="w-14 rounded-full">
+                  <img src={userAuthenticated?.image} className="rounded-full w-16 border" />
+                </div>
+              </div>
+            </Link>}
 
           </li>
           <li>
             {!loggedIn && !window.localStorage.getItem('userToken') && (
-                       <Link
-                       to="/create"
-                       class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                       aria-label="Sign up"
-                       title="Sign up"
-                     >
-                       Sign up
-                     </Link>
+              <Link
+                to="/create"
+                class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                aria-label="Sign up"
+                title="Sign up"
+              >
+                Sign up
+              </Link>
             )}
 
           </li>
           <li>
 
-          <input type="checkbox" className="toggle toggle-warning" onClick={()=>theme(prevState=>!prevState)} />
+            <input type="checkbox" className="toggle toggle-warning" onClick={() => theme(prevState => !prevState)} />
 
           </li>
         </ul>
@@ -185,6 +185,23 @@ export const Nav = ({theme,actualtheme}) => {
                 <nav>
                   <ul class="space-y-4">
                     <li>
+                      {!loggedIn && !window.localStorage.getItem('userToken') ? <Link
+                        to="/sign-in"
+                        aria-label="Sign in"
+                        title="Sign in"
+                        class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                      >
+                        Sign in
+                      </Link> : <Link to='/profile'
+                         aria-label="Sign in"
+                         title="Sign in"
+                         class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                       >
+
+                        Profile
+                      </Link>}
+                    </li>
+                    <li>
                       <Link
                         to="/products"
                         aria-label="Our product"
@@ -245,15 +262,21 @@ export const Nav = ({theme,actualtheme}) => {
                       </Link>
                     </li>
                     <li>
-                      <a
-                        href="/"
-                        class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                        aria-label="Sign up"
-                        title="Sign up"
-                      >
-                        Sign up
-                      </a>
+                      {!loggedIn && !window.localStorage.getItem('userToken') && (
+
+                        <a
+                          href="/"
+                          class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                          aria-label="Sign up"
+                          title="Sign up"
+                        >
+                          Sign up
+                        </a>
+                      )}
+
+
                     </li>
+
                   </ul>
                 </nav>
               </div>
