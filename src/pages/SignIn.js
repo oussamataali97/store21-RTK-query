@@ -10,6 +10,7 @@ import Swal from 'sweetalert2'
 export default function SignIn() {
   const Swal = require('sweetalert2')
   const { userAuthenticated ,users} = useSelector(state => state.users)
+  console.log(users,'localsto')
 
   const {loggedIn} = useSelector((state)=>state.users)
   const navigate=useNavigate()
@@ -37,13 +38,17 @@ export default function SignIn() {
 
   const handleSumbit =(e)=>{
     e.preventDefault()
-    dispatch(userAuth(data))
+    if(dispatch(userAuth(data))){
+      window.localStorage.setItem('usere', JSON.stringify(users))
+      Swal.fire(
+        'Welcome Back!',
+        'You Will be redirected to your Profile page ',
+        'success'
+      )
+    }
 
-    Swal.fire(
-      'Welcome Back!',
-      'You Will be redirected to your Profile page ',
-      'success'
-    )
+
+
 
   }
 

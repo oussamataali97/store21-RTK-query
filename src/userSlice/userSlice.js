@@ -9,6 +9,7 @@ const initialState={
     loggedIn:false,
     error:'',
     tokens:null,
+    productsCart:[]
 }
 
 export const userAuth = createAsyncThunk('userAuth',async({username,password})=>{
@@ -44,17 +45,27 @@ export const userApi = createApi({
           body: JSON.stringify(user),
         }),
         invalidatesTags: ['users'],
+      }),
+      getUserCart:builder.query({
+          query :(id)=>`users/${id}/carts`
       })
     }),
 
   })
 
-export const {useGetSingleUserQuery , useAddNewUserMutation } = userApi
+export const {useGetSingleUserQuery , useAddNewUserMutation ,useGetUserCartQuery} = userApi
 
 export const getUser = createAsyncThunk('getUser',async(id)=>{
     const response = await fetch(`https://dummyjson.com/users/${id}`)
     const data=await response.json()
     return data
+})
+
+
+export const getSpecificProducts = createAsyncThunk('getSpecificProducts',async(id)=>{
+  const response = await fetch(`https://dummyjson.com/products/${id}`)
+  const data=await response.json()
+  return data
 })
 
 export const userSlice=createSlice({
@@ -83,11 +94,18 @@ export const userSlice=createSlice({
             state.error=action.payload.error
 
         },
+        [getSpecificProducts.fulfilled]:(state,action)=>{
+          state.productsCart=action.payload
+
+      },
+
 
         [userAuth.fulfilled]:(state, {payload})=>{
           console.log(payload,'pay')
           state.tokens=payload.token
           state.userAuthenticated=payload
+
+
 
           if(state.tokens){
             window.localStorage.setItem('userToken',state.tokens)

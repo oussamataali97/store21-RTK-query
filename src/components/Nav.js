@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 export const Nav = ({ theme, actualtheme }) => {
   const { loggedIn, userAuthenticated } = useSelector((state) => state.users)
+  const userData =window.localStorage.getItem('usere')
+const profileStats=JSON.parse(userData)
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -83,12 +85,12 @@ export const Nav = ({ theme, actualtheme }) => {
           </span>
 
         </Link>
-        {loggedIn && window.localStorage.getItem('userToken') &&
+        { profileStats &&
 
 <Link to='/profile' className="flex md:hidden ml-5">
       <div className="avatar online">
         <div className="w-14 rounded-full">
-          <img src={userAuthenticated?.image} className="rounded-full w-16 border" />
+          <img src={profileStats.image} className="rounded-full w-16 border" />
         </div>
       </div>
     </Link>
@@ -99,7 +101,7 @@ export const Nav = ({ theme, actualtheme }) => {
 
         <ul class="flex items-center hidden ml-auto space-x-8 lg:flex">
           <li>
-            {!loggedIn && !window.localStorage.getItem('userToken') ? <Link
+            {!loggedIn && !profileStats ? <Link
               to="/sign-in"
               aria-label="Sign in"
               title="Sign in"
@@ -109,7 +111,7 @@ export const Nav = ({ theme, actualtheme }) => {
             </Link> : <Link to='/profile'>
               <div className="avatar online">
                 <div className="w-14 rounded-full">
-                  <img src={userAuthenticated?.image} className="rounded-full w-16 border" />
+                  <img src={profileStats?.image} className="rounded-full w-16 border" />
                 </div>
               </div>
             </Link>}
